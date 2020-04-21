@@ -11,8 +11,12 @@ class QuizQuestion extends Component {
 
   handleClick(buttonText) {
     if (buttonText === this.props.quiz_question.answer) {
+      this.setState({incorrectAnswer: false})
       this.props.showNextQuestionHandler()
+    } else {
+      this.setState({incorrectAnswer: true})
     }
+    console.log(this.state.incorrectAnswer)
   }
 
   render() {
@@ -32,6 +36,7 @@ class QuizQuestion extends Component {
             )}
           </ul>
         </section>
+        {this.state.incorrectAnswer ? <p className="error">Sorry, that's not the right answer</p>: null}
       </main>
     );
   }
